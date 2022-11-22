@@ -71,7 +71,7 @@ and submit button.
 1. php 7.4+ plus extensions:
    - `intl`
    - `pdo`
-   - `pdo_mysql`
+   - database extensions
 2. Any laravel-compatible database(mysql, postgres, sqlite etc)
 3. Composer
 
