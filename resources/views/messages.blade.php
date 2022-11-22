@@ -49,7 +49,7 @@
             <button class="w-100 btn btn-lg btn-primary" type="submit">Submit message</button>
         </form>
     </div>
-    @if($messages)
+    @if(!$messages->isEmpty())
     <div class="m-auto w-50">
         <table class="table caption-top">
             <caption>Previous Messages</caption>
