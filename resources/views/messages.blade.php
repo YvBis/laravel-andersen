@@ -33,15 +33,15 @@
 
             <!--fields-->
             <div class="form-floating">
-                <input type="text" class="form-control mb-2" id="floatingName" placeholder="John Doe" name="name">
+                <input type="text" class="form-control mb-2" id="floatingName" placeholder="John Doe" name="name" value="{{ old('name', '') }}">
                 <label for="floatingName">Your name</label>
             </div>
             <div class="form-floating">
-                <input type="email" class="form-control mb-2" id="floatingEmail" placeholder="name@example.com" name="email">
+                <input type="email" class="form-control mb-2" id="floatingEmail" placeholder="name@example.com" name="email" value="{{ old('email', '') }}">
                 <label for="floatingEmail">Your email address</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control mb-1" id="floatingMessage" placeholder="Hello World" name="message">
+                <input type="text" class="form-control mb-1" id="floatingMessage" placeholder="Hello World" name="message" value="{{ old('message', '') }}">
                 <label for="floatingMessage">Your message</label>
             </div>
             <!--#fields-->
