@@ -1,0 +1,62 @@
+version: "3.7"
+
+services:
+
+  nginx:
+    image: nginx:1.23.1
+    container_name: andersen-nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./.docker/nginx-logs:/var/log/nginx/
+      - ./:/var/www/laravel
+      - type: bind
+        source: ./.docker/site.conf
+        target: /etc/nginx/conf.d/default.conf
+    depends_on:
+      - php-fpm
+      - mariadb
+
+  php-fpm:
+    build:
+      context: ./.docker/php
+    container_name: andersen-php
+    volumes:
+      - ./:/var/www/laravel
+      - type: bind
+        source: ./.docker/.env
+        target: /var/www/laravel/.env
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.8
+    container_name: andersen-mariadb
+    restart: always
+    command: "mysqld --init-file /data/application/init.sql"
+    ports:
+      - 3308:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=4321
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=1234
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - type: bind
+        source: ./.docker/init.sql
+        target: /data/application/init.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: andersen-phpmyadmin
+    ports:
+      - 8900:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
+
+volumes:
+  mariadb-data:

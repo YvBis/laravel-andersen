@@ -1,6 +1,9 @@
 # Laravel-andersen
+
 ## Synopsis
+
 This is a technical task from Andersen.
+
 ```
 1) Init new repository on github/gitlab/bitbucket (https://github.com/)
 
@@ -24,7 +27,46 @@ and submit button.
  - message
 ```
 
-## Requirements
+## Run in container
+
+1. **Clone repository**
+   ```shell
+   git clone git clone git@github.com:YvBis/laravel-andersen.git
+   ```
+2. **Go to folder**
+   ```shell
+   cd laravel-andersen
+   ```
+3. **Run**
+    ```shell
+   docker-compose up -d
+   ```
+    ```shell
+   docker exec -u $(shell id -u) andersen-php composer install
+   ```
+    ```shell
+   docker exec -u $(shell id -u) andersen-php php artisan migrate
+   ```
+   ```shell
+    docker exec -u 0 andersen-php chown -R www-data:www-data /var/www/laravel/storage/
+   ```
+   or
+    ```shell
+   make build
+   ```
+    ```shell
+   make composer-install
+   ```
+    ```shell
+   make migrate
+   ```
+   ```shell
+   make set-up-storage
+   ```
+4. Open `127.0.0.1:8000` in browser.
+5. To stop the containers run `make stop` or `docker-compose stop`
+## Local run
+### Requirements
 
 1. php 7.4+ plus extensions:
    - `intl`
@@ -33,35 +75,33 @@ and submit button.
 2. Any laravel-compatible database(mysql, postgres, sqlite etc)
 3. Composer
 
-## Installation and Setup
+### Installation and Setup
 
 1. **Clone repository**
-    ```shell
-    git clone git clone git@github.com:YvBis/laravel-andersen.git
-    ```
-2. **Go to folder**
-    ```shell
-    cd laravel-andersen
-    ```
-3. **Install dependencies**
-    ```shell
-      composer install
-    ```
-4. **Create and modify .env file**
-    ```shell
-    cp .env.example .env
-    ```
-5. **Generate app key**
-    ```shell
-    php artisan key:generate
-    ```
-6. **Migrate db**
-    ```shell
-      php artisan migrate
-    ``` 
-7. **Serve the site**
-    ```shell
-    php artisan serve
+   ```shell
+   git clone git clone git@github.com:YvBis/laravel-andersen.git
    ```
-   
-
+2. **Go to folder**
+   ```shell
+   cd laravel-andersen
+   ```
+3. **Install dependencies**
+   ```shell
+     composer install
+   ```
+4. **Create and modify .env file**
+   ```shell
+   cp .env.example .env
+   ```
+5. **Generate app key**
+   ```shell
+   php artisan key:generate
+   ```
+6. **Migrate db**
+   ```shell
+     php artisan migrate
+   ```
+7. **Serve the site**
+   ```shell
+   php artisan serve
+   ```
