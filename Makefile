@@ -23,21 +23,21 @@ rebuild:
 
 # container
 php:
-	docker-compose exec -u $(shell id -u) andersen-php bash
+	docker exec -u $(shell id -u) andersen-php bash
 nginx:
-	docker-compose exec -u $(shell id -u) andersen-php bash
+	docker exec -u $(shell id -u) andersen-php bash
 
 migrate:
-	docker-compose exec -u $(shell id -u) andersen-php php artisan migrate
+	docker exec -u $(shell id -u) andersen-php php artisan migrate
 
 migrate-fresh:
-	docker-compose exec -u $(shell id -u) andersen-php php artisan migrate:fresh
+	docker exec -u $(shell id -u) andersen-php php artisan migrate:fresh
 
 seed:
-	docker-compose exec -u $(shell id -u) andersen-php php artisan db:seed
+	docker exec -u $(shell id -u) andersen-php php artisan db:seed
 # composer
 composer-install:
-	docker-compose exec -u $(shell id -u) andersen-php php composer install
+	docker exec -u $(shell id -u) andersen-php composer install
 
 composer-update:
-	docker-compose exec -u $(shell id -u) andersen-php php composer update
+	docker exec -u $(shell id -u) andersen-php php composer update
