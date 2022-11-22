@@ -47,6 +47,9 @@ and submit button.
     ```shell
    docker exec -u $(shell id -u) andersen-php php artisan migrate
    ```
+   ```shell
+    docker exec -u 0 andersen-php chown -R www-data:www-data /var/www/laravel/storage/
+   ```
    or
     ```shell
    make build
@@ -56,6 +59,9 @@ and submit button.
    ```
     ```shell
    make migrate
+   ```
+   ```shell
+   make set-up-storage
    ```
 4. Open `127.0.0.1:8000` in browser.
 5. To stop the containers run `make stop` or `docker-compose stop`

@@ -27,6 +27,9 @@ php:
 nginx:
 	docker exec -u $(shell id -u) andersen-php bash
 
+set-up-storage:
+	docker exec -u 0 andersen-php chown -R www-data:www-data /var/www/laravel/storage/
+
 migrate:
 	docker exec -u $(shell id -u) andersen-php php artisan migrate
 
